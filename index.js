@@ -43,6 +43,10 @@ const task27Route = require("./routes/task27");
 const updateDataRoute = require("./routes/updateData");
 const jstasksRouter = require("./routes/jstasks");
 
+app.get("/",(req,res)=>{
+  res.send("<h1><a href='/media/login'> Login </a></h1>")
+})
+
 app.use("/media", userRouter);
 app.use("/delimeter", delimeterRoute);
 app.use("/jobapp", jobappRoute);
