@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/pagination/style.css">
 </head>
 <body>
     <div class="container">
@@ -44,21 +44,21 @@
         <div class="page-value">
             <div class="pagination">
                 <button class="<%= page<=1 ? 'btn disable':"btn" %>">
-                    <a class="<%= page<=1 ? 'disable':"" %>" href="/user/?page=1">&lt;&lt;</a>
+                    <a class="<%= page<=1 ? 'disable':"" %>" href="/pagination/user/?page=1">&lt;&lt;</a>
                 </button>
 
                 <button class="<%= page<=1 ? 'btn disable':"btn" %>">
-                    <a class="<%= page<=1 ? 'disable':"" %>" href="/user/?page=<%= page-1 > 0 ? page -1 : 1%>">&lt;</a>
+                    <a class="<%= page<=1 ? 'disable':"" %>" href="/pagination/user/?page=<%= page-1 > 0 ? page -1 : 1%>">&lt;</a>
                 </button>
 
                 <p class="pg-num"><span id="page"><%= page %></span></p>
 
                 <button class="<%= page>=lastPage ? 'btn disable':"btn" %>">
-                    <a class="<%= page>= lastPage ? 'disable':"" %>" href="/user/?page=<%= page+1 <= lastPage ? page+1 : lastPage %>">&gt;</a>
+                    <a class="<%= page>= lastPage ? 'disable':"" %>" href="/pagination/user/?page=<%= page+1 <= lastPage ? page+1 : lastPage %>">&gt;</a>
                 </button>
 
                 <button class="<%= page>=lastPage ? 'btn disable':"btn" %>">
-                    <a class="<%= page>= lastPage ? 'disable':"" %>" href="/user/?page=<%= lastPage %>">&gt;&gt;</a>
+                    <a class="<%= page>= lastPage ? 'disable':"" %>" href="/pagination/user/?page=<%= lastPage %>">&gt;&gt;</a>
                 </button>
             </div>
         </div>

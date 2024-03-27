@@ -7,13 +7,13 @@ exports.getAllUser = async (req, res) => {
 
         let recordShown = Number(process.env.TOTAL_PAGE);
 
-        let [result] = await conn.query('select count(*) as records from studentMaster;')
+        let [result] = await conn.query('select count(*) as records from studentMaster2;')
 
         let totalRecord = result[0].records;
 
         let lastPage = Math.floor(totalRecord / recordShown)
 
-        let sql = "select * from studentMaster limit ?,?;"
+        let sql = "select * from studentMaster2 limit ?,?;"
 
         let page = Number(req.query.page) || 1;
 
@@ -45,7 +45,7 @@ exports.getUserOrderBy = async (req, res) => {
         // execute query for total records
         let data;
         try {
-            let [result] = await conn.query('select count(*) as records from studentMaster;')
+            let [result] = await conn.query('select count(*) as records from studentMaster2;')
             data = result;
         } catch (error) {
             return res.status(500).json({
@@ -64,7 +64,7 @@ exports.getUserOrderBy = async (req, res) => {
         let orderby = req.query.orderby || "sid";
 
         // make query for getting data
-        let sql = `select * from studentMaster order by ${orderby} limit ?,?;`;
+        let sql = `select * from studentMaster2 order by ${orderby} limit ?,?;`;
 
         // get page from query string
         let page = Number(req.query.page) || 1;
@@ -115,7 +115,7 @@ exports.getUserOrderByValue = async (req, res) => {
         // execute query for total records
         let data;
         try {
-            let [result] = await conn.query('select count(*) as records from studentMaster;')
+            let [result] = await conn.query('select count(*) as records from studentMaster2;')
             data = result;
         } catch (error) {
             return res.status(500).json({
@@ -135,7 +135,7 @@ exports.getUserOrderByValue = async (req, res) => {
         let order = req.query.order || "ASC";
 
         // make query for getting data
-        let sql = `select * from studentMaster order by ${orderby} ${order} limit ?,?;`;
+        let sql = `select * from studentMaster2 order by ${orderby} ${order} limit ?,?;`;
 
         // get page from query string
         let page = Number(req.query.page) || 1;

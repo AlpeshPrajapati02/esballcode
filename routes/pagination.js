@@ -5,15 +5,8 @@ const router = express.Router();
 
 
 
-router.get('/',auth,async(req,res)=>{
-    return res.render('pagination')
-})
+router.get('/',auth,getUserOrderByValue)
 
-
-router.get('/user',auth,getAllUser)
-
-router.get('/users',auth,getUserOrderBy)
-router.get('/data',auth,getUserOrderByValue)
 
 
 
