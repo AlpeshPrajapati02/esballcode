@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/public/task-27-06/style.css">
+</head>
+<body>
+    <!-- container -->
+    <div class="container">
+        <!-- title -->
+        <h1 style="font-size: 16px;">Name : Alpesh Prajapati</h1>
+        <!-- table of result of all student -->
+        <table border="1">
+            <tr class="header">
+                <td rowspan="2">SID</td>
+                <td rowspan="2">Name</td>
+                <td  colspan="2">Prelim</td>
+                <td  colspan="2">Terminal</td>
+                <td  colspan="2">Final</td>
+                <td rowspan="2">Total obtained from 1200</td>
+                <td rowspan="2">View</td>
+            </tr>
+            <tr class="header">
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+
+               
+            </tr>
+            <% students.forEach(student => { %>
+                <tr>
+                    <td><%= student.sid %></td>
+                    <td><%= student.name %></td>
+                    <td><%= student.prelimPractical  %></td>
+                    <td><%= student.prelimTheory %></td>
+                    <td><%= student.terminalPractical %></td>
+                    <td><%= student.terminalTheory %></td>
+                    <td><%= student.finalPractical %></td>
+                    <td><%= student.finalTheory %></td>
+                    <td><%= student.total%></td>
+                    <td><a href="/task27/result/<%= student.sid %>">View</a></td>
+                </tr>
+            <% }) %>
+      
+        </table>
+
+        <!-- info of page and data -->
+        <div class="data">
+            <p>showing <%= offsetValue+1 +" to "+ Number(offsetValue+students.length) %> of <%= totalRecord %> Records on Page <%= page  %></p>
+        </div>
+
+        <!-- pagination -->
+        <div class="page-value">
+            <div class="pagination">
+                    <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/task27/result/?page=1">&lt;&lt;</a>
+
+                    <a class="<%= page<=1 ? 'btn disable':"btn" %>" href="/task27/result/?page=<%= page-1 > 0 ? page -1 : 1%>">&lt;</a>
+
+                <p class="pg-num"><span id="page"><%= page %></span></p>
+
+                    <a class="<%= page>= lastPage ? 'btn disable':"btn" %>" href="/task27/result/?page=<%= page+1 <= lastPage ? page+1 : lastPage %>">&gt;</a>
+
+                    <a class="<%= page>= lastPage ? 'btn disable':"btn" %>" href="/task27/result/?page=<%= lastPage %>">&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

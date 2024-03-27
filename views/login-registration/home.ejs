@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserData</title>
+    <link rel="stylesheet" type="text/css" href="/public/loginRegistration/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="content">
+            <h2>Registration</h2>
+            <form action="/register" class="user" method="post">
+                <div class="fname">
+                    <label for="fname">First Name: </label>
+                    <input type="text" name="fname" id="fname" placeholder="Enter your first name" class="dvalid" >
+                </div>
+                <div class="lname">
+                    <label for="lname">Last Name: </label>
+                    <input type="text" name="lname" id="lname" placeholder="Enter your last name" class="dvalid" >
+                </div>
+                <div class="email">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email" class="dvalid" >
+                </div>
+                <div class="dob">
+                    <label for="dob">Date Of Birth: </label>
+                    <input type="date" name="dob" id="dob" class="dvalid" >
+                </div>
+                <div class="designation">
+                    <label for="designation">Designation: </label>
+                    <input type="text" name="designation" id="designation" placeholder="Enter designation" class="dvalid" >
+                </div>
+                <div class="password">
+                    <label for="lname">Password: </label>
+                    <input type="password" name="password" id="password" placeholder="Enter a password" class="dvalid" >
+                </div>
+                <div class="confirmPassword">
+                    <label for="confirmPassword">Confirm Password: </label>
+                    <input type="password" name="confirmPassword" id="confirmPassword"
+                        placeholder="Re-enter the same password" class="dvalid" >
+                </div>
+
+                <div class="submit">
+                    <input type="submit" id="submit" value="Register">
+                </div>
+                <div class="or">
+                    <div class="left"></div>
+                    <p>OR</p>
+                    <div class="right"></div>
+                </div>
+                <div class="link">
+                    <p>Already have an Account <a href="/media/login">login</a></p>
+                </div>
+            </form>
+        </div>
+            <div class="link"></div>
+        </div>
+
+    </div>
+
+
+    <script src="/public/loginRegistration/script.js   "></script>
+    <script>
+        // collect data from above form
+        let submit = document.getElementById("submit");
+        if(localStorage.getItem('token')){
+            window.location = "/media"
+        }
+        submit.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (validate()) {
+                let fname = document.getElementById("fname").value;
+                let lname = document.getElementById("lname").value;
+                let email = document.getElementById("email").value;
+                let dob = document.getElementById("dob").value;
+                let designation = document.getElementById("designation").value;
+                let password = document.getElementById("password").value;
+                let confirmPassword = document.getElementById("confirmPassword").value;
+
+
+                let data = await fetch("http://localhost:8000/media/register", {
+                    method: "POST",
+                    body: JSON.stringify({ fname, lname, email, dob, designation, password, confirmPassword }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                data = await data.json();
+                console.log(data)
+                if (data.success) {
+                   
+                    let p = document.createElement('p');
+                    p.classList.add('active-link');
+                    p.innerHTML = `<a href="http://localhost:8000/media/token/?token=${data.user.verification_token}&email=${data.user.email}" target="_blank">Click Here</a> to Activate Account!`;
+                    document.querySelector('.link').appendChild(p)
+                } else {
+                    document.querySelector('.link').innerHTML = `<p>Error occur during Registration, Please register again !</p>`;
+                }
+            }
+        })
+
+
+        console.log(document.cookie)
+
+    </script>
+</body>
+
+</html>

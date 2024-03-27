@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application  Form</title>
+    <link rel="stylesheet" href="/public/jobappcombo/style.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <h2 class="title">Job Application Form</h2>
+
+        <p class="msg"></p>
+        <form action="/user" method="post" onsubmit="return validate()" name="jobApplicationForm" id="jobApplicationForm">
+
+            <!-- basic details -->
+        <fieldset id="userdata">
+                <legend>Basic Details: </legend>
+                
+                <div class="details">
+                    <div class="basic-details">
+
+                
+                        <label for="fname">First Name: 
+                        <input type="text" id="fname" name="fname" class="dvalid"></label>
+                            
+                        <label for="lname">Last Name: 
+                        <input type="text" id="lname" name="lname" class="dvalid"></label>
+
+                        <label for="designation">Designation: 
+                        <input type="text" name="designation" id="designation" class="dvalid"></label>
+                        
+                        <label for="email">Email Address: 
+                        <input type="text" id="email" name="email" class="dvalid"></label>
+                        
+                        <label for="phone">Phone Number: 
+                        <input type="text" id="phone" name="phone" class="dvalid"></label>
+
+                        
+                        <%- gender %>
+
+                        <label for="dob">Date Of Birth: 
+                        <input type="text" name="dob" id="dob" placeholder="mm/dd/yyyy" class="dvalid"> </label>
+
+                    </div>
+
+                    <div class="other-details">
+                        <label for="city">City: 
+                        <input type="text" name="city" id="city" class="dvalid"></label>
+                        
+                        <%- state %>
+            
+            
+                        <label for="zipcode">Zip Code: 
+                        <input type="text" name="zipcode" id="zipcode" class="dvalid"></label>
+            
+                       <%- relationship %>
+            
+                        <label for="add1">Address 1:
+                        <input type="text" name="add1" id="add1" class="dvalid"> </label>
+            
+                        <label for="add2">Address 2:
+                        <input type="text" name="add2" id="add2"> </label>
+                    </div>
+
+                </div>
+        </fieldset>
+
+        <!-- education details section-->
+
+        <fieldset id="educationdetails">
+            <legend>Education Details: </legend>
+
+            <div class="resultdetails">
+                <p>SSC result</p>
+                <div class="education">
+                    <label for="ssc-nameofboard">Name of Board: 
+                    <input type="text" name="sscnameofboard" id="ssc-nameofboard" class="dvalid" ></label>
+        
+                    <label for="ssc-passingyear">Passing Year:
+                    <input type="text" name="sscpassingyear" id="ssc-passingyear" class="dvalid"> </label>
+        
+                    <label for="ssc-percentage">Percentage: 
+                    <input type="text" name="sscpercentage" id="ssc-percentage" class="dvalid" ></label>
+                </div>
+                <hr>
+
+                <p>HSC/Deploma result</p>
+                <div class="education" id="hsc">
+                    <label for="hsc-nameofboard">Name of Board: 
+                    <input type="text" name="hscnameofboard" id="hsc-nameofboard" class="dvalid" ></label>
+        
+                    <label for="hsc-passingyear">Passing Year: 
+                    <input type="text" name="hscpassingyear" id="hsc-passingyear" class="dvalid" ></label>
+        
+                    <label for="hsc-percentage">Percentage: 
+                    <input type="text" name="hscpercentage" id="hsc-percentage" class="dvalid" ></label>
+                </div>
+                <hr>
+
+                <p>Bachelor Degree</p>
+                <div class="education" id="bachelor">
+                    <label for="bachelor-coursename">Course Name: 
+                    <select name="bachelorcoursename" id="bachelor-coursename">
+                        <option value="">--Select--</option>
+                        <option value="BTech">BTech</option>
+                        <option value="BA">BA</option>
+                        <option value="BSC">BSC</option>
+                    </select> </label>
+
+                    <label for="bachelor-university">University / College : 
+                    <input type="text" name="bacheloruniversity" id="bachelor-university"></label>
+
+                    <label for="bachelor-passingyear">Passing Year: 
+                    <input type="text" name="bachelorpassingyear" id="bachelor-passingyear"  ></label>
+        
+                    <label for="bachelor-percentage">Percentage: 
+                    <input type="text" name="bachelorpercentage" id="bachelor-percentage" ></label>
+                </div>
+                <hr>
+
+                <p>Master Degree</p>
+                <div class="education" id="master">
+                    <label for="master-coursename">Course Name: 
+                        <select name="mastercoursename" id="master-coursename">
+                            <option value="">--Select--</option>
+                            <option value="MTech">MTech</option>
+                            <option value="MA">MA</option>
+                            <option value="MSC">MSC</option>
+                        </select> </label>
+
+
+                    <label for="master-university">University / College : 
+                    <input type="text" name="masteruniversity" id="master-university"></label>
+        
+                    <label for="master-passingyear">Passing Year: 
+                    <input type="text" name="masterpassingyear" id="master-passingyear" ></label>
+        
+                    <label for="master-percentage">Percentage: 
+                    <input type="text" name="masterpercentage" id="master-percentage" ></label>
+                </div>
+            
+            </div>
+
+        </fieldset>
+
+        <!-- experience section -->
+        <fieldset id="experience">
+            <legend>Work Experience: </legend>
+            <div class="add-del-btn">
+                <button id="cadd"><img width="10" src="/public/img/referance.png" alt=""></button>
+                <button id="cremove"><img width="10" src="/public/img/images-removebg-preview.png" alt=""></button>
+            </div>
+            <div id="companydetails">
+                <div class="company">
+                    <label for="companyname1">Company Name:
+                    <input type="text" name="company[]" id="companyname1"></label>
+
+                    <label for="designation1">Designation:
+                    <input type="text" name="cdesignation[]" id="designation1"></label>
+
+                    <label for="fromdate1">Form: 
+                    <input type="text" name="fromdate[]" id="fromdate1" ></label>
+
+                    <label for="todate1">To:
+                    <input type="text"   name="todate[]" id="todate1"> </label>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <!-- lang known section -->
+        <div class="lang-tech">
+
+            <fieldset id="language">
+                <legend>Language Known:</legend>
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+                            <input type="checkbox" name="hindi" value="hindi" id="hindi" class="langvalid">
+                            <label for="hindi">Hindi</label>
+                        </div>
+                        <div class="lang-opt">
+                            <input type="checkbox" name="langcheck1[]" value="read" id="read1" class="langopvalid">
+                            <label for="read1">Read</label>
+                            
+                            <input type="checkbox" name="langcheck1[]" value="write" id="write1" class="langopvalid">
+                            <label for="write1">Write</label>
+                            
+                            <input type="checkbox" name="langcheck1[]" value="speak" id="speak1" class="langopvalid">
+                            <label for="speak1">Speak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+                            <input type="checkbox" name="gujarati" value="gujarati" id="gujarati" class="langvalid">
+                            <label for="gujarati">gujarati</label>
+                        </div>
+                        <div class="lang-opt">
+
+                            <input type="checkbox" name="langcheck2[]" value="read" id="read2" class="langopvalid">
+                            <label for="read2">Read</label>
+                            
+                            <input type="checkbox" name="langcheck2[]" value="write" id="write2" class="langopvalid">
+                            <label for="write2">Write</label>
+                            
+                            <input type="checkbox" name="langcheck2[]" value="speak" id="speak2" class="langopvalid">
+                            <label for="speak2">Speak</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+
+                            <input type="checkbox" name="english" value="english" id="english" class="langvalid">
+                            <label for="english">English</label>
+                        </div>
+                    <div class="lang-opt">
+
+                        <input type="checkbox" name="langcheck3[]" value="read" id="read3" class="langopvalid">
+                        <label for="read3">Read</label>
+                        
+                        <input type="checkbox" name="langcheck3[]" value="write" id="write3" class="langopvalid">
+                        <label for="write3">Write</label>
+                        
+                        <input type="checkbox" name="langcheck3[]" value="speak" id="speak3" class="langopvalid">
+                        <label for="speak3">Speak</label>
+                        </div> 
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+
+
+            <!-- tech known section -->
+            <fieldset id="technology">
+                <legend>Technologies You Know: </legend>
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="php" value="php" id="php" class="techvalid">
+                            <label for="php">PHP</label>
+                        </div>
+                        <div class="tech-opt">
+                            <input type="radio" name="phptech" value="beginer" id="beginer1"><label for="beginer1">Beginer</label>
+                            <input type="radio" name="phptech" id="mideator1" value="mideator"><label for="mideator1">Mideator</label>    
+                            <input type="radio" name="phptech" value="expert" id="expert1"><label for="expert1">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="mysql" value="mysql"  id="mysql" class="techvalid">
+                            <label for="mysql">Mysql</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="mysqltech" value="beginer" id="beginer2"><label for="beginer2">Beginer</label>
+                            <input type="radio" name="mysqltech" id="mideator2" value="mideator"><label for="mideator2">Mideator</label>    
+                            <input type="radio" name="mysqltech" value="expert" id="expert2"><label for="expert2">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="laravel" value="laravel" id="laravel" class="techvalid">
+                            <label for="laravel">Laravel</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="laraveltech" value="beginer" ><label for="beginer3">Beginer</label>
+                            <input type="radio" name="laraveltech"  value="mideator"><label for="mideator3">Mideator</label>    
+                            <input type="radio" name="laraveltech" value="expert" ><label for="expert3">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="oralce" value="oracle" id="oracle" class="techvalid">
+                            <label for="oracle">Oracle</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="oracletech" value="beginer" id="beginer"><label for="beginer">Beginer</label>
+                            <input type="radio" name="oracletech" id="mideator" value="mideator"><label for="mideator">Mideator</label>    
+                            <input type="radio" name="oracletech" value="expert" id="expert"><label for="expert">Expert</label>
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+        </div>
+
+        <!-- referancecontact section -->
+        <fieldset id="referancecontact">
+            <legend>Referance Contact: </legend>
+            <div class="add-del-btn">
+                <button id="radd"><img width="10" src="/public/jobappcombo/img/images.png" alt=""></button>
+                <button id="rremove"><img width="10" src="/public/jobappcombo/img/images-removebg-preview.png" alt=""></button>
+            </div>
+            <div class="referance">
+                <div class="refvalid">
+                    <label for="name1">Name: </label>
+                    <input type="text" name="refname[]" id="name1" >
+                    
+                    <label for="contact1">Contact Number: </label>
+                    <input type="text" name="refcontact[]" id="contact1">
+                    
+                    <label for="relation1">Relation: </label>
+                    <input type="text" name="refrelation[]" id="relation1">
+                </div>
+            </div>
+        </fieldset>
+
+
+        <!-- preference section -->
+        <fieldset id="preference">
+            <legend>Preferences: </legend>
+
+            <div class="preferance-details">
+                <label for="location">Prefered Location: 
+                <input type="text" name="location" id="location" class="dvalid"></label>
+                
+                <div class="other-info">
+                    <label for="noticeperiod">Notice Period: 
+                    <input type="text" name="noticeperiod" id="noticeperiod" class="dvalid"></label>
+                    
+                    <label for="expectedctc">Expected CTC:
+                    <input type="text" name="expectedctc" id="expectedctc" class="dvalid"> </label>
+                    
+                    <label for="currentCTC">Current CTC: 
+                    <input type="text" name="currentctc" id="currentCTC" class="dvalid"></label>
+                </div>
+
+                <%- department %>
+            </div>
+        </fieldset>
+
+        <div class="btns">
+            <input id="prev-btn" class="btn" type="submit" value="Prev">
+            <input id="next-btn" class="btn" type="submit" value="Next">
+        </div>
+        
+        </form>
+    </div>
+    <script src="/public/jobappcombo/script.js"></script>
+    <script src="/public/jobappcombo/addition.js"></script>
+    <script src="/public/jobappcombo/update.js"></script>
+</body>
+</html>

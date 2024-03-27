@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn{
+    border: 1px solid red;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.btn a{
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}

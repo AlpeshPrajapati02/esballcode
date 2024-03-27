@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events</title>
+    <link rel="stylesheet" href="/public/jsevent/style.css">
+</head>
+<!-- <body onload="alert('onload event triggered')" ononline="alert('online event triggered')" onoffline="alert('offline event triggered')"> -->
+    <body onbeforeprint="alert('beforeprint event triggered')" 
+    onafterprint="alert('afterprint event triggered')" onresize="alert('resize event triggered')">        
+    <p draggable="true">draggable text</p>
+
+    <div class="container">
+        <table border="1">
+            <tr>
+                <td>
+                    <button onclick="alert('onclick event triggered')">click me!</button>
+                </td>
+                <td>
+                    <button onmouseover="alert('mouseover event triggered')">mouseover on me!</button>
+                </td>
+                <td>
+                    <button onmouseout="alert('mouseout event triggered')">mouseout</button>
+                </td>
+                <td>
+                    <input type="text" placeholder="blur event" onblur="alert('blur event triggered')"> 
+                </td>
+                <td>
+                    <input type="text" placeholder="focus event" onfocus="alert('focus event triggered')">
+                </td>
+                <td >
+                    <input type="text" placeholder="change event" onchange="alert('change event triggered')">
+                </td>
+                <td>
+                    <button ondblclick="alert('double click event triggered')">double click</button>
+                </td>
+                <td>
+                    <p draggable="true" ondrag="alert('drag event triggered')">Drag me!</p> 
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div ondragenter="alert('dragenter event triggered')">put dragged text</div> 
+                </td>
+                
+
+                <td>
+                    <button onmousedown="alert('mousedown event triggered')">mousedown</button>
+                </td>
+
+
+                <td>
+                    <button onmouseup="alert('mouseup event triggered')">mouseup</button>
+                </td>
+
+
+                <td>
+                    <input type="text" placeholder="input event" oninput="alert('input event triggered')">
+                </td>
+
+
+                <td>
+                    <input type="text" placeholder="keypress event" onkeypress="alert('keypress event triggered')">
+                </td>
+
+
+                <td>
+                    <input type="text" placeholder="keydown event" onkeydown="alert('keypress event triggered')">
+                </td>
+
+
+                <td>
+                    <input type="text" placeholder="keyup event" onkeyup="alert('keyup event triggered')">
+                </td>
+
+
+                <td>
+                    <button onpointerup="alert('pointerup event triggered')">pointer up</button>
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>
+                    <button onpointerdown="alert('pointerdown event triggered')">pointer down</button>
+                </td>
+
+
+
+                <td>
+                    <input type="text" placeholder="mouse enter event" onmouseenter="alert('mouseenter event triggered')">
+                </td>
+
+
+
+                <td>
+                    <input type="text" placeholder="mouse leave event" onmouseleave="alert('mouseleave event triggered')">
+                </td>
+
+
+
+                <td>
+                    <p onmousemove="alert('mousemove event triggered')">mouse move</p>
+                </td>
+
+
+
+                <td>
+                    <button onpointerenter="alert('pointer enter event triggered')">pointer enter</button>
+                </td>
+
+
+
+                <td>
+                    <button onpointerleave="alert('pointer leave event triggered')">pointer leave</button>
+                </td>
+
+
+
+                <td>
+                    <button  onpointermove="alert('pointer move event triggered')">pointer move</button>
+                </td>
+
+
+
+                <td>
+                    <button onpointerover="alert('pointerover event triggered')">pointer over</button>
+                </td>
+
+
+
+            </tr>
+
+
+            <tr>
+                <td>
+                    <form action="" onreset="alert('reset event triggered')">
+                        <input type="text"  name="name" placeholder="enter name" id="name"><br>
+                        <input type="reset" value="reset">
+                    </form>
+                </td>
+                <td>
+                    <div oncontextmenu="alert('contactmenu event triggered')">
+                        <p>right click</p>
+                    </div>
+                </td>
+                <td>
+                    <select name="scroll" id="scroll" size="2" onscroll="alert('scroll event triggered')">
+                        <option value="item 1">item 1</option>
+                        <option value="item 2">item 2</option>
+                        <option value="item 3">item 3</option>
+                        <option value="item 4">item 4</option>
+                        <option value="item 5">item 5</option>
+                        <option value="item 6">item 6</option>
+                        <option value="item 7">item 7</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" value="select me" onselect="alert('select event triggered')">
+                </td>
+                <td>
+                    <details ontoggle="alert('toggle event triggered')">
+                        <summary>toggle me</summary>
+                        <p>- toggled me!</p>
+                    </details>
+                </td>
+                <td>
+                   <form action="" onsubmit="alert('submit event triggered')">
+                        <input type="text" name="name" id="name" placeholder="name">
+                        <br>    
+                        <input type="submit" value="submit">
+                    </form> 
+                </td>
+                <td>
+                    <p onwheel ="alert('wheel event triggered')">wheel the mouse</p>
+                </td>
+                <td>
+                    <p oncopy="alert('copy event triggered')">copy this text !</p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <input type="text" value="cut this text!" oncut="alert('cut event triggered')">
+                </td>
+                <td>
+                    <p draggable="true" ondragend="alert('dragend event triggered')">drag end</p>
+                </td>
+                <td>
+                    <input type="text" placeholder="paste here" onpaste="alert('paste event triggered')">
+                </td>
+                <td>
+                    <!-- <img src="image.gif" onerror="alert('error event triggered')">  -->
+                    remove comment
+                </td>
+                <td>
+                    <input type="text" placeholder="focus in" onfocusin="alert('focusin event triggered')">
+                </td>
+                <td>
+                    <input type="text" placeholder="focus out" onfocusout="alert('focusout event triggered')">
+                </td>
+                <td>
+                    <form action="POST" >
+                        <input type="text" oninvalid="alert('invalid event triggered')" name="name" placeholder="enter name" id="name" required><br>
+                        <input type="submit" value="submit">
+                    </form> 
+                </td>
+                <td>
+                   <p draggable="true" ondragleave="alert('dragleave event triggered')">drag leave</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    <p draggable="true" ondragstart="alert('dragstart event triggered')">drag start</p>
+                </td>
+                <td colspan="4">
+                    <p draggable="true" ondragover="alert('dragover event triggered')">drag over</p>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    
+</body>
+</html>

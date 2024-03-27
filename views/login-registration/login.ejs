@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/loginRegistration/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="content">
+            <h2>Login</h2>
+            <form action="/login" class="user" method="post">
+                <div class="email">
+                    <label for="email">Email </label>
+                    <input type="text" name="email" id="email" placeholder="Enter your email" class="dvalid">
+                </div>
+
+                <div class="password">
+                    <label for="lname">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" class="dvalid">
+                </div>
+
+                <div class="submit">
+                    <input type="submit" id="submit" value="Login">
+                </div>
+                <div class="forgot-pass">
+                    <p><a href="/media/forgot-password" id="forgot-password">Forgot Password?</a></p>
+                </div>
+
+                <div class="or">
+                    <div class="left"></div>
+                    <p>OR</p>
+                    <div class="right"></div>
+                </div>
+                <div class="link">
+                    <p>Create New Account <a href="/media/register">register</a></p>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+
+    <script src="/public/loginRegistration/script.js"></script>
+    <script>
+        let submit = document.getElementById('submit');
+
+        if(localStorage.getItem('token')){
+            window.location = "/media"
+        }
+       
+        submit.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (validate()) {
+                let email = document.getElementById('email').value;
+                let password = document.getElementById('password').value;
+
+
+                let data = await fetch('http://localhost:8000/media/login', {
+                    method: "POST",
+                    body: JSON.stringify({ email: email, password: password }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+
+                data = await data.json();
+                console.log(data);
+
+                if (data.success) {
+                    localStorage.setItem('token',data.user.token);
+                    window.location.href = "http://localhost:8000/media"
+                }
+            }
+        });
+
+        let forgotPass = document.getElementById('forgot-password');
+
+    </script>
+</body>
+
+</html>

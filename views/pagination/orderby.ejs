@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/public/orderby.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- table -->
+        <table border="1">
+            <tr class="header">
+                <% for(let keys in students[0]) { %>
+                    <% if (keys !== 'createdAt') { %>    
+                        <td data-orderby="<%= orderby %>" data-value="<%= keys %>" data-order="<%= order === "ASC"?"DESC":"ASC" %>">
+                            <div class="header-div" >
+                            <span><%= keys %></span> 
+                           <div class="arrow">
+                                <% if (orderby === keys) { %>
+                                    <img src=<%= order === "ASC" ? "/public/img/up.png":"/public/img/down.png" %> alt="">
+                                <% } %>
+                            </div>
+                            </div>
+                        </td>
+                    <% } %>
+                <% } %>
+
+
+            </tr>
+
+        <% students.map((student) => { %>
+            <tr>
+                <% for( let keys in student ) { %>
+                    <% if (keys !== "createdAt") { %>
+                        <td><%= student[keys] %></td>
+                    <% } %>
+                <% } %>
+            </tr>
+        <% }) %>
+        </table>
+
+        <div class="data">
+            <p>showing <%= offsetValue+1 +" to "+ Number(offsetValue+recordShown) %> of <%= totalRecord %> Records on Page <%= page  %></p>
+        </div>
+
+        <!-- pagination -->
+        <div class="page-value">
+            <div class="pagination">
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/data/?page=1<%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"   %>">&lt;&lt;</a>
+
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/data/?page=<%= page-1 > 0 ? page - 1 : 1 %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&lt;</a>
+
+                <p class="pg-num"><span id="page" onchange=""><%= page %></span></p>
+
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/data/?page=<%= page+1 <= lastPage ? page+1 : lastPage%><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;</a>
+
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/data/?page=<%= lastPage %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- js code -->
+    <script>
+        let tds = document.querySelectorAll('.header td');
+
+        tds.forEach((td)=>{
+            td.addEventListener('click',()=>{
+                let data = td.dataset;
+                
+                let order = data.order;
+                let currorderby = data.orderby;
+                let neworderby = data.value;
+
+                if(currorderby !== neworderby){
+                    
+                    window.location.href= window.location.origin + window.location.pathname + `?page=1&orderby=${neworderby}&order=ASC`;
+                }else{
+
+                    window.location.href= window.location.origin + window.location.pathname + `?page=1&orderby=${neworderby}&order=${order}`;
+                } 
+
+            })
+        })
+    </script>
+</body>
+</html>

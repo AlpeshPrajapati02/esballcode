@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserData</title>
+</head>
+<body>
+    <div class="container">
+        <button id="logout">Logout</button>
+        <p class="fname"><span>First Name : </span><%= user.fname %></p>
+        <p class="fname"><span>Last Name : </span><%= user.lname %></p>
+        <p class="fname"><span>Date of Birth : </span><%= user.dob %></p>
+        <p class="fname"><span>Designation : </span><%= user.designation %></p>
+        <p class="fname"><span>Email: </span><%= user.email %></p>
+    </div>
+    <script>
+        let logout = document.getElementById('logout');
+
+        logout.addEventListener("click", async(e)=>{
+            e.preventDefault();
+            localStorage.removeItem('token')
+            let data = await fetch("http://localhost:8000/media/logout",{
+                method:"GET",
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+
+            data = await data.json();
+
+            if (data.success) {
+                window.location = "/media/login"
+            }
+        });
+    </script>
+</body>
+</html>

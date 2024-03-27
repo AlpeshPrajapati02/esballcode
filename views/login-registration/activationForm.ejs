@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container{
+            padding: 30px 0;
+            max-width: 1080px;
+            width: 100%;
+            margin: 0 auto;
+            height: 100vh;
+        }
+
+        .active-button{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #active-account{
+            padding: 6px 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        #active-account:hover{
+            background-color: rgb(20, 155, 20);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <%- html %>
+    </div>
+
+
+    <script>
+        // let active = document.getElementById('active-account');
+        
+        // active.addEventListener("click", async(e)=>{
+        //     e.preventDefault();
+        //     let pathname = new URLSearchParams(window.location.search);
+        //     // console.log(pathname.get('token'))
+
+        //     let data = await fetch(`http://localhost:8000/token/${pathname.get('token')}`,{
+        //         method:"POST",
+        //         body:JSON.stringify({email:pathname.get('email')}),
+        //         headers:{
+        //             "Content-Type":"application/json"
+        //         }
+        //     })
+
+        //     data = await data.json();
+        //     console.log(data)
+        //     if(data.success){
+        //         window.location.href = "http://localhost:8000/login"
+        //     }
+        //     else{
+        //         window.location.href = "http://localhost:8000/register";
+        //     }
+        // });
+
+        // generate token 
+        let generate = document.getElementById('generate-token');
+
+        generate?.addEventListener('click',async(e)=>{
+            e.preventDefault();
+
+            let pathname = new URLSearchParams(window.location.search);
+            // console.log(pathname.get('token'))
+
+            let data = await fetch(`http://localhost:8000/generate`,{
+                method:"POST",
+                body:JSON.stringify({email:pathname.get('email')}),
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+
+            data = await data.json();
+            console.log(data)
+            if(data.success){
+                window.location.href = `http://localhost:8000/token/?token=${data.token}&email=${pathname.get('email')}`;
+            }
+            else{
+                window.location.href = "http://localhost:8000/register";
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 30px 0;
+            max-width: 1080px;
+            width: 100%;
+            margin: 0 auto;
+            height: 100vh;
+        }
+
+        .active-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            border: 1px solid black;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 3px 0 black;
+        }
+
+        #submit {
+            padding: 4px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgb(0, 153, 255);
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #email {
+            padding: 4px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <%- html %>
+    </div>
+
+    <script>
+        let submit = document.getElementById('submit');
+
+
+        submit.addEventListener('click', async (e) => {
+            e.preventDefault();
+            let email = document.getElementById('email').value;
+            if (email) {
+                let data = await fetch("http://localhost:8000/forgot-password", {
+                    method: "POST",
+                    body: JSON.stringify({ email: email }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                data = await data.json();
+
+                if (data.success) {
+                    if (document.querySelector('.error')) {
+                        document.querySelector('.error').remove();
+                    }
+                    let div = document.createElement('div');
+                    div.classList.add('active-link');
+
+                    let html = `
+                            <p>Create New Password Link</p>
+                            <a href="http://localhost:8000/forgot?token=${data.token}&email=${email}">http://localhost:8000/forgot?token=${data.token}&email=${email}</a>
+                    `;
+
+                    div.innerHTML = html;
+
+                    document.querySelector('.container').appendChild(div)
+                }
+                else {
+
+                    if (document.querySelector('.error')) {
+                        document.querySelector('.error').remove();
+                    }
+                    let p = document.createElement('p');
+                    p.classList.add('error')
+                    p.style.color = "red";
+                    p.style.textAlign = "center";
+                    p.style.paddingTop = "15px";
+                    p.innerHTML = "Invalid Email!"
+                    document.querySelector('.container').appendChild(p)
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

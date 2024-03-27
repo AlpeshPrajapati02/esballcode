@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/task-27-06/studentResult.css">
+</head>
+<body>
+    <div class="container">
+        <div class="student-data">
+            <p class="sid"><span>Student Id :</span> <%= results[0].sid %></p>
+            <p class="sid"><span>Student Name :</span> <%= results[0].name %></p>
+            <p><span>Last 3 Month Attendance Report :</span> </p>
+            <table border="1">
+                <tr class="header">
+                    <td>present</td>
+                    <td>month</td>
+                    <td>Attendance</td>
+                </tr>
+                <% attendances.forEach(attendance => { %>
+                 <tr>
+                    <td><%= attendance.present %></td>
+                    <td><%= attendance.month %></td>
+                    <td><%= (attendance.present*100/attendance.lastdate).toFixed(2) %> %</td>
+                 </tr>
+                <% }) %>
+            </table>
+        </div>
+
+        <p class="result-label">Results : </p>
+        <div class="results-data">
+            <% results.forEach((result) => { %>
+             <div class="result">
+                 <p style="color:blue"><span style="color:rgb(182, 0, 0)">exam Type : </span> <%= result.examName %></p>
+                <p><span>subject : </span> <%= result.sname %></p>
+                <p><span>Practical Marks: </span> <%= result.obtainedMarkInPractical %></p>
+                <p><span>Theory Marks: </span> <%= result.obtainedMarksInTheory %></p>
+             </div>
+            <% }) %>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/public/records.css">
+</head>
+<body>
+    <div class="container">
+        <!-- filter -->
+        <div class="filter">
+            <select name="orderby" id="orderby">
+                <option value="">--select--</option>
+                <optgroup label="ASC order">
+                    <option value="sid">SID</option>
+                    <option value="fname">First Name</option>
+                    <option value="lname">Last Name</option>
+                    <option value="age">Age</option>
+                    <option value="phoneNo">PhoneNo</option>
+                    <option value="city">City</option>
+                    <option value="state">State</option>
+                    <option value="passingYear">Passing Year</option>
+                </optgroup>
+                <optgroup label="DESC order">
+                    <option value="sid desc">SID DESC</option>
+                    <option value="fname desc">First Name DESC</option>
+                    <option value="lname desc">Last Name DESC</option>
+                    <option value="age desc">Age DESC</option>
+                    <option value="phoneNo desc">PhoneNo DESC</option>
+                    <option value="city desc">City DESC</option>
+                    <option value="state desc">State DESC</option>
+                    <option value="passingYear desc">Passing Year DESC</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <!-- table -->
+        <table border="1">
+            <tr class="header">
+                <td>SID</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Age</td>
+                <td>PhoneNo</td>
+                <td>City</td>
+                <td>State</td>
+                <td>pincode</td>
+                <td>gender</td>
+                <td>father contact</td>
+                <td>Address</td>
+                <td>Passing Year</td>
+            </tr>
+
+        <% students.map((student) => { %>
+            <tr>
+                <td><%= student.sid %></td>
+                <td><%= student.fname %></td>
+                <td><%= student.lname %></td>
+                <td><%= student.age %></td>
+                <td><%= student.phoneNo %></td>
+                <td><%= student.city %></td>
+                <td><%= student.state %></td>
+                <td><%= student.pincode %></td>
+                <td><%= student.gender %></td>
+                <td><%= student.fatherPhoneNo %></td>
+                <td><%= student.currentAddress %></td>
+                <td><%= student.passingYear %></td>
+            </tr>
+        <% }) %>
+        </table>
+
+        <div class="data">
+            <p>showing <%= offsetValue+1 +" to "+ Number(offsetValue+recordShown) %> of <%= totalRecord %> Records on Page <%= page  %></p>
+        </div>
+
+        <!-- pagination -->
+        <div class="page-value">
+            <div class="pagination">
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/users/?page=1<%= orderby !=='sid' ? '&orderby='+orderby :"" %>">&lt;&lt;</a>
+
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/users/?page=<%= page-1 > 0 ? page - 1 : 1 %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>">&lt;</a>
+
+                <p class="pg-num"><span id="page" onchange=""><%= page %></span></p>
+
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/users/?page=<%= page+1 <= lastPage ? page+1 : lastPage%><%= orderby !=='sid' ? '&orderby='+orderby :"" %>">&gt;</a>
+
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/users/?page=<%= lastPage %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>">&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- js code -->
+    <script>
+        let opValue = document.getElementById('orderby');
+
+        opValue.addEventListener('change',()=>{
+            if(opValue.value !== ""){
+                window.location.href= window.location.origin + window.location.pathname + `?page=1&orderby=${opValue.value}`;
+            }
+
+        })
+    </script>
+</body>
+</html>

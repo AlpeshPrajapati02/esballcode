@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/delimeterSearch/style.css">
+</head>
+<body>
+    <div class="container">
+        <table border="1">
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Age</td>
+                <td>Mobile No</td>
+                <td>City</td>
+            </tr>
+            <tr>
+                <td>_</td>
+                <td>^</td>
+                <td>}</td>
+                <td>{</td>
+                <td>:</td>
+            </tr>
+        </table>
+
+        <div id="search-details"></div>
+
+        <form action="" method="post">
+            <input type="text" name="search" value="<%= str %>" id="search">
+
+            <input type="submit" id="submit" value="GO">
+        </form>
+
+
+        <% if (data?.length) { %>
+            <%- include('_table') %>
+        <% } %>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+</html>

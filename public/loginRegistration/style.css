@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    padding: 30px 0;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 90%;
+}
+
+.content{
+    border-radius: 5px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 5px  0 black;
+}
+
+.content form{
+    /* border: 1px solid black; */
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    /* box-shadow: 0 0 5px  0 black; */
+}
+
+form div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.or{
+    display: flex;
+    flex-direction: row;
+}
+
+form input{
+    padding: 2px;
+}
+
+.submit input{
+    width: 100%;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background: rgb(79, 170, 245);
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.or{
+    display: flex;
+    align-items: center;
+}
+
+.or .left, .or .right{
+   height: 1px;
+   background-color: gray;
+}
+
+.or p{
+ padding: 0 2px;
+ color: gray;
+}
+
+
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forgot-pass{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+a {
+    text-decoration: none;
+}

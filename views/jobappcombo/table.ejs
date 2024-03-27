@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table border="1">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>email</td>
+                <td>Edit</td>
+            </tr>
+            <% data.forEach((user) => { %>
+                <tr>
+                    <td><%= user.canid %></td>
+                    <td><%= user.fname + " "+ user.lname %></td>
+                    <td><%= user.email %></td>
+                    <td><a href="/jobapp/edit/<%= user.canid %>" id="user<%= user.canid %>" class="edit">Edit</a></td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+</html>

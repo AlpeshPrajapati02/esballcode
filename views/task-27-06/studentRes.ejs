@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/task-27-06/studentRes.css">
+</head>
+<body>
+    <!-- container -->
+    <div class="container">
+        <!-- title -->
+        <h1 style="font-size: 16px;">Name : Alpesh Prajapati</h1>
+        <!-- student info -->
+        <div class="student-data">
+            <p class="sid"><span>Student Id :</span> <%= results[0].sid %></p>
+            <p class="sid"><span>Student Name :</span> <%= results[0].name %></p>
+            <!-- attendance info -->
+            <p><span>Last 3 Month Attendance Report :</span> </p>
+            <table border="1">
+                <tr class="header">
+                    <td>present</td>
+                    <td>month</td>
+                    <td>Attendance</td>
+                </tr>
+                <% attendances.forEach(attendance => { %>
+                 <tr>
+                    <td><%= attendance.present %></td>
+                    <td><%= attendance.month %></td>
+                    <td><%= (attendance.present*100/attendance.lastdate).toFixed(2) %> %</td>
+                 </tr>
+                <% }) %>
+            </table>
+        </div>
+
+        <!-- all exam's result -->
+        <div class="all-results">
+            <!-- terminal all subject result -->
+            <div class="terminal">
+                <h3>Terminal Exams Results : </h3>
+                <div class="results-data">
+                    <% results[0].terminal.map((result) => { %>
+                     <div class="result">
+                        <p><span>subject : </span> <%= result.sname %></p>
+                        <p><span>Practical Marks: </span> <%= result.obtainedMarkInPractical %></p>
+                        <p><span>Theory Marks: </span> <%= result.obtainedMarksInTheory %></p>
+                     </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <!-- prelim all subject result -->
+            <div class="prelim">
+                <h3>Prelim Exams Results : </h3>
+                <div class="results-data">
+                    <% results[0].prelim.map((result) => { %>
+                     <div class="result">
+                        <p><span>subject : </span> <%= result.sname %></p>
+                        <p><span>Practical Marks: </span> <%= result.obtainedMarkInPractical %></p>
+                        <p><span>Theory Marks: </span> <%= result.obtainedMarksInTheory %></p>
+                     </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <!-- final all subject result -->
+            <div class="final">
+                <h3>Final Exams Results : </h3>
+                <div class="results-data">
+                    <% results[0].final.map((result) => { %>
+                     <div class="result">
+                        <p><span>subject : </span> <%= result.sname %></p>
+                        <p><span>Practical Marks: </span> <%= result.obtainedMarkInPractical %></p>
+                        <p><span>Theory Marks: </span> <%= result.obtainedMarksInTheory %></p>
+                     </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

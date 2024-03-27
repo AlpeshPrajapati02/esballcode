@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application  Form</title>
+    <link rel="stylesheet" href="/public/updateData/style.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <h2 class="title">Job Application Form</h2>
+
+        <div class="msg">
+            <% if (message.length>0) { %>
+                <h3 style="text-align: center; color: red;"><%= message %></h3>
+            <% } %> 
+        </div>
+
+        <form action="<%= route %>" method="post" onsubmit="return validate()" name="jobApplicationForm" id="jobApplicationForm">
+            <!-- basic details -->
+        <fieldset id="userdata">
+                <legend>Basic Details: </legend>
+                
+                <div class="details">
+                    <div class="basic-details">
+
+                
+                        <label for="fname">First Name: 
+                        <input type="text" id="fname" name="fname" value="<%= data?.fname %>" class="dvalid"></label>
+                            
+                        <label for="lname">Last Name: 
+                        <input type="text" id="lname" name="lname" value="<%= data?.lname %>" class="dvalid"></label>
+
+                        <label for="designation">Designation: 
+                        <input type="text" name="designation" id="designation" value="<%= data?.designation %>" class="dvalid"></label>
+                        
+                        <label for="email">Email Address: 
+                        <input type="text" id="email" name="email" value="<%= data?.email %>" class="dvalid"></label>
+                        
+                        <label for="phone">Phone Number: 
+                        <input type="text" id="phone" name="phone" value="<%= data?.phoneNo %>" class="dvalid"></label>
+
+                        
+                        <label for="gender">Gender: 
+                        <input type="radio" name="gender" value="male" id="male" <% if (data?.gender == "male") { %>
+                            checked
+                        <% } %>><label for="male">Male</label>
+
+
+
+                        <input type="radio" name="gender" value="female" id="female" <% if (data?.gender == "female") { %>
+                            checked
+                        <% } %>><label for="female">Female</label></label>
+
+                        <label for="dob">Date Of Birth: 
+                        <input type="text" name="dob" id="dob" placeholder="mm/dd/yyyy" class="dvalid" value="<%= data?.dob?.toLocaleDateString()%>"> </label>
+
+                    </div>
+
+                    <div class="other-details">
+                        <label for="city">City: 
+                        <input type="text" name="city" id="city" value="<%= data?.city %>" class="dvalid"></label>
+                        
+                        <label for="state">State: 
+                        <select name="state" id="state" class="dvalid">
+                            <option <% if (data?.state =="") { %>
+                                    selected
+                            <% } %> value="">--Select State--</option>
+                            <option <% if (data?.state =="Gujarat") { %>
+                                    selected
+                            <% } %> value="Gujarat">Gujarat</option>
+                            <option <% if (data?.state =="Rajasthan") { %>
+                                    selected
+                            <% } %> value="Rajasthan">Rajasthan</option>
+                            <option <% if (data?.state =="Assam") { %>
+                                    selected
+                            <% } %> value="Assam">Assam</option>
+                            <option <% if (data?.state =="Uttar Pradesh") { %>
+                                    selected
+                            <% } %> value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option <% if (data?.state =="Tamil Nadu") { %>
+                                    selected
+                            <% } %> value="Tamil Nadu">Tamil Nadu</option>
+                            <option <% if (data?.state =="Andra Pradesh") { %>
+                                    selected
+                            <% } %> value="Andra Pradesh">Andra Pradesh</option>
+                            <option <% if (data?.state =="Karnataka") { %>
+                                    selected
+                            <% } %> value="Karnataka">Karnataka</option>
+                        </select></label>
+            
+            
+                        <label for="zipcode">Zip Code: 
+                        <input type="text" name="zipcode" id="zipcode" value="<%= data?.zipCode %>" class="dvalid"></label>
+            
+                        <label for="relationship">Relationship:
+                        <select name="relationship" id="relationship" class="dvalid">
+                            <option value="" <% if (data?.relationship == "") { %>
+                                    selected
+                            <% } %>>--Select--</option>
+                            <option value="single" <% if (data?.relationship == "single") { %>
+                                    selected
+                            <% } %>>Single</option>
+                            <option value="married" <% if (data?.relationship == "married") { %>
+                                    selected
+                            <% } %>>Married</option>
+                            <option value="divorced" <% if (data?.relationship == "divorced") { %>
+                                    selected
+                            <% } %>>Divorsed</option>
+                            <option value="widowed" <% if (data?.relationship == "widowed") { %>
+                                    selected
+                            <% } %>>Widowed</option>
+                        </select> </label>
+            
+                        <label for="add1">Address 1:
+                        <input type="text" name="add1" value="<%= data?.add1 %>" id="add1" class="dvalid"> </label>
+            
+                        <label for="add2">Address 2:
+                        <input type="text" name="add2" value="<%= data?.add2 %>" id="add2"> </label>
+                    </div>
+
+                </div>
+        </fieldset>
+
+        <!-- education details section-->
+
+        <fieldset id="educationdetails">
+            <legend>Education Details: </legend>
+
+            <div class="resultdetails">
+                <p>SSC result</p>
+                <div class="education">
+                    <label for="ssc-nameofboard">Name of Board: 
+                    <input type="text" name="sscnameofboard" id="ssc-nameofboard" class="dvalid" value="<%= educationDetails[0]?.board_course %>"></label>
+        
+                    <label for="ssc-passingyear">Passing Year:
+                    <input type="text" name="sscpassingyear" id="ssc-passingyear" class="dvalid" value="<%= educationDetails[0]?.passingYear %>"> </label>
+        
+                    <label for="ssc-percentage">Percentage: 
+                    <input type="text" name="sscpercentage" id="ssc-percentage" class="dvalid" value="<%= educationDetails[0]?.percentage %>"></label>
+                </div>
+                <hr>
+
+                <p>HSC/Deploma result</p>
+                <div class="education" id="hsc">
+                    <label for="hsc-nameofboard">Name of Board: 
+                    <input type="text" name="hscnameofboard" id="hsc-nameofboard" class="dvalid" value="<%= educationDetails[1]?.board_course %>"></label>
+        
+                    <label for="hsc-passingyear">Passing Year: 
+                    <input type="text" name="hscpassingyear" id="hsc-passingyear" class="dvalid" value="<%= educationDetails[1]?.passingYear %>"></label>
+        
+                    <label for="hsc-percentage">Percentage: 
+                    <input type="text" name="hscpercentage" id="hsc-percentage" class="dvalid" value="<%= educationDetails[1]?.percentage %>"></label>
+                </div>
+                <hr>
+
+                <p>Bachelor Degree</p>
+                <div class="education" id="bachelor">
+                    <label for="bachelor-coursename">Course Name: 
+                    <select name="bachelorcoursename" id="bachelor-coursename">
+                        <option <% if (educationDetails[2]?.board_course === "") { %>
+                                selected
+                        <% } %> value="">--Select--</option>
+                        <option <% if (educationDetails[2]?.board_course === "BTech") { %>
+                                selected
+                        <% } %> value="BTech">BTech</option>
+                        <option <% if (educationDetails[2]?.board_course === "BA") { %>
+                                selected
+                        <% } %> value="BA">BA</option>
+                        <option <% if (educationDetails[2]?.board_course === "BSC") { %>
+                                selected
+                        <% } %> value="BSC">BSC</option>
+                    </select> </label>
+
+                    <label for="bachelor-university">University / College : 
+                    <input type="text" name="bacheloruniversity" id="bachelor-university" value="<%= educationDetails[2]?.university %>"></label>
+
+                    <label for="bachelor-passingyear">Passing Year: 
+                    <input type="text" name="bachelorpassingyear" id="bachelor-passingyear" value="<%= educationDetails[2]?.passingYear %>"></label>
+        
+                    <label for="bachelor-percentage">Percentage: 
+                    <input type="text" name="bachelorpercentage" id="bachelor-percentage" value="<%= educationDetails[2]?.percentage %>"></label>
+                </div>
+                <hr>
+
+                <p>Master Degree</p>
+                <div class="education" id="master">
+                    <label for="master-coursename">Course Name: 
+                        <select name="mastercoursename" id="master-coursename">
+                            <option <% if (educationDetails[3]?.board_course == "") { %>
+                                selected
+                            <% } %> value="">--Select--</option>
+                            <option <% if (educationDetails[3]?.board_course == "MTech") { %>
+                                selected
+                            <% } %> value="MTech">MTech</option>
+                            <option <% if (educationDetails[3]?.board_course == "MA") { %>
+                                selected
+                            <% } %> value="MA">MA</option>
+                            <option <% if (educationDetails[3]?.board_course == "MSC") { %>
+                                selected
+                            <% } %> value="MSC">MSC</option>
+                        </select> </label>
+
+
+                    <label for="master-university">University / College : 
+                    <input type="text" name="masteruniversity" id="master-university" value="<%= educationDetails[3]?.university %>"></label>
+        
+                    <label for="master-passingyear">Passing Year: 
+                    <input type="text" name="masterpassingyear" id="master-passingyear" value="<%= educationDetails[3]?.passingYear %>"></label>
+        
+                    <label for="master-percentage">Percentage: 
+                    <input type="text" name="masterpercentage" id="master-percentage" value="<%= educationDetails[3]?.percentage %>"></label>
+                </div>
+            
+            </div>
+
+        </fieldset>
+
+        <!-- experience section -->
+        <fieldset id="experience">
+            <legend>Work Experience: </legend>
+            <div class="add-del-btn">
+                <p id="cadd"><img width="10" src="/public/img/referance.png" alt=""></p>
+                <p id="cremove"><img width="10" src="/public/img/images-removebg-preview.png" alt=""></p>
+            </div>
+            <div id="companydetails">
+                <div class="company">
+                    <label for="companyname1">Company Name:
+                    <input type="text" name="company[]"  value="<%= workDetails[0]?.companyName %>"></label>
+
+                    <label for="designation1">Designation:
+                    <input type="text" name="cdesignation[]" value="<%= workDetails[0]?.designation %>"></label>
+
+                    <label for="fromdate1">Form: 
+                    <input type="text" name="fromdate[]"  value="<%= workDetails[0]?.fromDate?.toLocaleDateString() %>"></label>
+
+                    <label for="todate1">To:
+                    <input type="text"   name="todate[]"  value="<%= workDetails[0]?.toDate?.toLocaleDateString() %>"> </label>
+
+                    <input type="hidden" name="companyId[]" value="<%= workDetails[0]?.wid %>">
+                </div>
+                <% for( let i = 1; i < workDetails.length; i++ ) { %>
+                    <div class="company">
+                        <label for="companyname1">Company Name:
+                        <input type="text" name="company[]" value="<%= workDetails[i]?.companyName %>"></label>
+    
+                        <label for="designation1">Designation:
+                        <input type="text" name="cdesignation[]"  value="<%= workDetails[i]?.designation %>"></label>
+    
+                        <label for="fromdate1">Form: 
+                        <input type="text" name="fromdate[]" value="<%= workDetails[i]?.fromDate?.toLocaleDateString() %>"></label>
+    
+                        <label for="todate1">To:
+                        <input type="text"   name="todate[]" value="<%= workDetails[i]?.toDate?.toLocaleDateString() %>"> </label>
+
+                        <input type="hidden" name="companyId[]" value="<%= workDetails[i]?.wid %>">
+                    </div>
+                <% } %>
+            </div>
+
+        </fieldset>
+
+        <!-- lang known section -->
+        <div class="lang-tech">
+
+            <fieldset id="language">
+                <legend>Language Known:</legend>
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+                            <input type="checkbox" name="hindi" value="hindi" id="hindi" class="langvalid" <%= language?.filter((obj)=>obj.language == "hindi").length>0 ?'checked':'' %>>
+                            <label for="hindi">Hindi</label>
+                        </div>
+                        <div class="lang-opt">
+                            <input type="checkbox" name="langcheck1[]" value="read" id="read1" class="langopvalid" <%= language?.filter((obj)=>obj.language == "hindi" && obj.canRead).length>0 ? 'checked':'' %>>
+                            <label for="read1">Read</label>
+                            
+                            <input type="checkbox" name="langcheck1[]" value="write" id="write1" class="langopvalid" <%= language?.filter((obj)=>obj.language == "hindi" && obj.canWrite).length>0 ? 'checked':'' %>>
+                            <label for="write1">Write</label>
+                            
+                            <input type="checkbox" name="langcheck1[]" value="speak" id="speak1" class="langopvalid" <%= language?.filter((obj)=>obj.language == "hindi" && obj.canSpeak ).length>0 ? 'checked':'' %>>
+                            <label for="speak1">Speak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+                            <input type="checkbox" name="gujarati" value="gujarati" id="gujarati" class="langvalid" <%= language?.filter((obj)=>obj.language == "gujarati").length>0?'checked':'' %>>
+                            <label for="gujarati">gujarati</label>
+                        </div>
+                        <div class="lang-opt">
+
+                            <input type="checkbox" name="langcheck2[]" value="read" id="read2" class="langopvalid" <%= language?.filter((obj)=>obj.language == "gujarati" && obj.canRead).length>0 ? 'checked':'' %>>
+                            <label for="read2">Read</label>
+                            
+                            <input type="checkbox" name="langcheck2[]" value="write" id="write2" class="langopvalid" <%= language?.filter((obj)=>obj.language == "gujarati" && obj.canWrite).length>0 ? 'checked':'' %>>
+                            <label for="write2">Write</label>
+                            
+                            <input type="checkbox" name="langcheck2[]" value="speak" id="speak2" class="langopvalid" <%= language?.filter((obj)=>obj.language == "gujarati" && obj.canSpeak).length>0 ? 'checked':'' %>>
+                            <label for="speak2">Speak</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="lang">
+                    <div class="lang-details">
+                        <div>
+                            <input type="checkbox" name="english" value="english" id="english" class="langvalid" <%= language?.filter((obj)=>obj.language == "english").length>0?'checked':'' %>>
+                            <label for="english">English</label>
+                        </div>
+                    <div class="lang-opt">
+
+                        <input type="checkbox" name="langcheck3[]" value="read" id="read3" class="langopvalid" <%= language?.filter((obj)=>obj.language == "english" && obj.canRead).length>0? 'checked':'' %>>
+                        <label for="read3">Read</label>
+                        
+                        <input type="checkbox" name="langcheck3[]" value="write" id="write3" class="langopvalid" <%= language?.filter((obj)=>obj.language == "english" && obj.canWrite).length>0 ? 'checked':'' %>>
+                        <label for="write3">Write</label>
+                        
+                        <input type="checkbox" name="langcheck3[]" value="speak" id="speak3" class="langopvalid" <%= language?.filter((obj)=>obj.language == "english" && obj.canSpeak).length>0 ? 'checked':'' %>>
+                        <label for="speak3">Speak</label>
+                        </div> 
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+
+
+            <!-- tech known section -->
+            <fieldset id="technology">
+                <legend>Technologies You Know: </legend>
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="php" value="php" id="php" class="techvalid"  <%= techDetails?.filter((obj)=>obj.technology == "php").length>0  ? 'checked':'' %>>
+                            <label for="php">PHP</label>
+                        </div>
+                        <div class="tech-opt">
+                            <input type="radio" name="phptech" value="beginer" id="beginer1" <%= techDetails?.filter((obj)=>obj.technology == "php" && obj.level=="beginer").length>0   ? 'checked':'' %>><label for="beginer1">Beginer</label>
+                            <input type="radio" name="phptech" id="mideator1" value="mideator" <%= techDetails?.filter((obj)=>obj.technology == "php" && obj.level=='mideator').length>0   ? 'checked':'' %>><label for="mideator1">Mideator</label>    
+                            <input type="radio" name="phptech" value="expert" id="expert1" <%= techDetails?.filter((obj)=>obj.technology == "php" && obj.level=="expert").length>0   ? 'checked':'' %>><label for="expert1">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="mysql" value="mysql"  id="mysql" class="techvalid"  <%= techDetails?.filter((obj)=>obj.technology == "mysql").length>0   ? 'checked':'' %>>
+                            <label for="mysql">Mysql</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="mysqltech" value="beginer" id="beginer2" <%= techDetails?.filter((obj)=>obj.technology == "mysql" && obj.level=="beginer").length>0 ? 'checked':'' %>><label for="beginer2">Beginer</label>
+                            <input type="radio" name="mysqltech" id="mideator2" value="mideator" <%= techDetails?.filter((obj)=>obj.technology == "mysql" && obj.level=="mideator").length>0  ? 'checked':'' %>><label for="mideator2">Mideator</label>    
+                            <input type="radio" name="mysqltech" value="expert" id="expert2" <%= techDetails?.filter((obj)=>obj.technology == "mysql" && obj.level=="expert").length>0  ? 'checked':'' %>><label for="expert2">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="laravel" value="laravel" id="laravel" class="techvalid"  <%= techDetails?.filter((obj)=>obj.technology == "laravel").length>0   ? 'checked':'' %>>
+                            <label for="laravel">Laravel</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="laraveltech" value="beginer" id="beginer3" <%= techDetails?.filter((obj)=>obj.technology == "laravel" && obj.level=="beginer").length>0  ? 'checked':'' %>><label for="beginer3">Beginer</label>
+                            <input type="radio" name="laraveltech" id="mideator3" value="mideator" <%= techDetails?.filter((obj)=>obj.technology == "laravel" && obj.level=="mideator").length>0  ? 'checked':'' %>><label for="mideator3">Mideator</label>    
+                            <input type="radio" name="laraveltech" value="expert" id="expert3" <%= techDetails?.filter((obj)=>obj.technology == "laravel" && obj.level=="expert").length>0  ? 'checked':'' %>><label for="expert3">Expert</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="tech">
+                    <div class="tech-details">
+                        <div>
+
+                            <input type="checkbox" name="oralce" value="oracle" id="oralce" class="techvalid"  <%= techDetails?.filter((obj)=>obj.technology == "oracle").length>0   ? 'checked':'' %>>
+                            <label for="oracle">Oracle</label>
+                        </div>
+                        <div class="tech-opt">
+
+                            <input type="radio" name="oracletech" value="beginer" id="beginer"  <%= techDetails?.filter((obj)=>obj.technology == "oracle" && obj.level=="beginer").length>0   ? 'checked':'' %>><label for="beginer">Beginer</label>
+
+                            <input type="radio" name="oracletech" id="mideator" value="mideator" <%= techDetails?.filter((obj)=>obj.technology == "oracle" && obj.level=="mideator").length>0 ? 'checked':'' %>><label for="mideator">Mideator</label> 
+
+                            <input type="radio" name="oracletech" value="expert" id="expert" <%= techDetails?.filter((obj)=>obj.technology == "oracle" && obj.level=="expert").length>0 ? 'checked':'' %>><label for="expert">Expert</label>
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+        </div>
+
+        <!-- referancecontact section -->
+        <fieldset id="referancecontact">
+            <legend>Referance Contact: </legend>
+            <div class="add-del-btn">
+                <p id="radd"><img width="10" src="/public/img/referance.png" alt=""></p>
+                <p id="rremove"><img width="10" src="/public/img/images-removebg-preview.png" alt=""></p>
+            </div>
+            <div class="referance">
+                <div class="refvalid">
+                    <label for="name1">Name: </label>
+                    <input type="text" name="refname[]"  value="<%= referance[0]?.name %>">
+                    
+                    <label for="contact1">Contact Number: </label>
+                    <input type="text" name="refcontact[]" value="<%= referance[0]?.contactNo %>">
+                    
+                    <label for="relation1">Relation: </label>
+                    <input type="text" name="refrelation[]" value="<%= referance[0]?.relation %>">
+
+                    <input type="hidden" name="refId[]" value="<%= referance[0]?.rfid %>">
+                </div>
+                <% for( let i = 1; i < referance.length; i++ ) { %>
+                    <div class="refvalid">
+                        <label for="name1">Name: </label>
+                        <input type="text" name="refname[]"  value="<%= referance[i]?.name %>">
+                        
+                        <label for="contact1">Contact Number: </label>
+                        <input type="text" name="refcontact[]" value="<%= referance[i]?.contactNo %>">
+                        
+                        <label for="relation1">Relation: </label>
+                        <input type="text" name="refrelation[]" value="<%= referance[i]?.relation %>">
+
+                        <input type="hidden" name="refId[]" value="<%= referance[i]?.rfid %>">
+                    </div>
+                <% } %>
+            </div>
+        </fieldset>
+
+
+        <!-- preference section -->
+        <fieldset id="preference">
+            <legend>Preferences: </legend>
+
+            <div class="preferance-details">
+                <label for="location">Prefered Location: 
+                <input type="text" name="location" id="location" class="dvalid" value="<%= preference?.preferedLocation %>"></label>
+                
+                <div class="other-info">
+                    <label for="noticeperiod">Notice Period: 
+                    <input type="text" name="noticeperiod" id="noticeperiod" class="dvalid" value="<%= preference?.noticePeriod %>"></label>
+                    
+                    <label for="expectedctc">Expected CTC:
+                    <input type="text" name="expectedctc" id="expectedctc" class="dvalid" value="<%= preference?.expectedCTC %>"> </label>
+                    
+                    <label for="currentCTC">Current CTC: 
+                    <input type="text" name="currentctc" id="currentCTC" class="dvalid" value="<%= preference?.currentCTC %>"></label>
+                </div>
+
+                <label for="department">Department:
+                <select name="department" id="department" class="dvalid">
+                    <option <%= preference?.department == "" ? 'selected' : '' %> value="">--Select--</option>
+                    <option <%= preference?.department == "development" ? 'selected' : '' %> value="development">Development</option>
+                    <option <%= preference?.department == "marketing" ? 'selected' : '' %> value="marketing">Marketing</option>
+                </select></label>
+            </div>
+        </fieldset>
+
+        <input type="hidden" name="id" value="<%= data?.canid %>">
+
+            <div class="btn">
+                <input id="submit" type="submit" value="Submit" width="60">
+            </div>
+        
+        </form>
+    </div>
+
+
+    <script src="/public/updateData/script.js"></script>
+    <script src="/public/updateData/addition.js"></script>
+</body>
+</html>

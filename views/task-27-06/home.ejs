@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/public/task-27-06/style.css">
+</head>
+<body>
+    <!-- container -->
+    <div class="container">
+
+        <!-- title -->
+        <h1 style="font-size: 16px;">Name : Alpesh Prajapati</h1>
+
+        <!-- filter -->
+        <div class="filter">
+            <p>Filter : </p>
+            <select name="filter" id="filter">
+                <option data-month="<%= month %>" value="2023-12-31">DEC 2023</option>
+                <option data-month="<%= month %>" value="2024-01-31">JAN 2024</option>
+                <option data-month="<%= month %>" value="2024-02-29">FEB 2024</option>
+            </select>
+        </div>
+
+        <!-- table of records -->
+        <table border="1">
+            <tr class="header">
+                <td>SID</td>
+                <td>Name</td>
+                <td>Present Day</td>
+                <td>Attendance</td>
+            </tr>
+
+        <% students.map((student) => { %>
+            <tr>
+                <td><%= student.sid %></td>
+                <td><%= student.name %></td>
+                <td><%= student.present %></td>
+                <td><%= ((student.present/days)*100).toFixed(2) +" %" %></td>
+            </tr>
+        <% }) %>
+        </table>
+
+
+        <!-- showing information -->
+        <div class="data">
+            <p>showing <%= offsetValue+1 +" to "+ Number(offsetValue+students.length) %> of <%= totalRecord %> Records on Page <%= page  %></p>
+        </div>
+
+
+        <!-- pagination -->
+        <div class="page-value">
+            <div class="pagination">
+                    <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/user/?page=1">&lt;&lt;</a>
+
+                    <a class="<%= page<=1 ? 'btn disable':"btn" %>" href="/user/?page=<%= page-1 > 0 ? page -1 : 1%><%= filter !=='2023-12-31' ? '&filter='+filter :"" %>">&lt;</a>
+
+                <p class="pg-num"><span id="page"><%= page %></span></p>
+
+                    <a class="<%= page>= lastPage ? 'btn disable':"btn" %>" href="/user/?page=<%= page+1 <= lastPage ? page+1 : lastPage %><%= filter !=='2023-12-31' ? '&filter='+filter :"" %>">&gt;</a>
+
+                    <a class="<%= page>= lastPage ? 'btn disable':"btn" %>" href="/user/?page=<%= lastPage %><%= filter !=='2023-12-31' ? '&filter='+filter :"" %>">&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let option = document.getElementById('filter');
+        let options = option.options;
+        
+        option.addEventListener('change',async()=>{
+            window.location.href = window.location.origin + window.location.pathname + `?page=1&filter=${option.value}`;
+        })
+        
+        for(let i = 0; i<options.length; i++){
+            if(Number(options[i].value.split("-")[1]) === Number(options[i].dataset.month)){
+                options[i].selected = true; 
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
