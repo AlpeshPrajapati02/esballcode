@@ -82,7 +82,7 @@
                 let confirmPassword = document.getElementById("confirmPassword").value;
 
 
-                let data = await fetch("http://localhost:8000/media/register", {
+                let data = await fetch("/media/register", {
                     method: "POST",
                     body: JSON.stringify({ fname, lname, email, dob, designation, password, confirmPassword }),
                     headers: {
@@ -93,11 +93,15 @@
                 data = await data.json();
                 console.log(data)
                 if (data.success) {
+                   let activelink = document.getElementsByClassName('active-link');
+                   for(let i =0; i<activelink.length; i++){
+                    activelink[i].remove()
+                   }
                    
                     let p = document.createElement('p');
                     p.classList.add('active-link');
-                    p.innerHTML = `<a href="http://localhost:8000/media/token/?token=${data.user.verification_token}&email=${data.user.email}" target="_blank">Click Here</a> to Activate Account!`;
-                    document.querySelector('.link').appendChild(p)
+                    p.innerHTML = `<a href="/media/token/?token=${data.user.verification_token}&email=${data.user.email}" target="_blank">Click Here</a> to Activate Account!`;
+                    document.querySelector('.link').innerHTML = p;
                 } else {
                     document.querySelector('.link').innerHTML = `<p>Error occur during Registration, Please register again !</p>`;
                 }

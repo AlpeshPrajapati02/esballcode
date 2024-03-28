@@ -16,7 +16,7 @@ app.use(
   })
 );
 
-app.use(cors({ origin: "http://localhost:8000" }));
+app.use(cors({ origin: "*" }));
 // set view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");

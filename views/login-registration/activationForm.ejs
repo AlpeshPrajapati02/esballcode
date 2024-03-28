@@ -84,7 +84,7 @@
             let pathname = new URLSearchParams(window.location.search);
             // console.log(pathname.get('token'))
 
-            let data = await fetch(`http://localhost:8000/generate`,{
+            let data = await fetch(`/generate`,{
                 method:"POST",
                 body:JSON.stringify({email:pathname.get('email')}),
                 headers:{
@@ -95,10 +95,10 @@
             data = await data.json();
             console.log(data)
             if(data.success){
-                window.location.href = `http://localhost:8000/token/?token=${data.token}&email=${pathname.get('email')}`;
+                window.location.href = `/token/?token=${data.token}&email=${pathname.get('email')}`;
             }
             else{
-                window.location.href = "http://localhost:8000/register";
+                window.location = "/register";
             }
         })
     </script>

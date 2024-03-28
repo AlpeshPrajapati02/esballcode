@@ -50,7 +50,7 @@
         logout.addEventListener("click", async (e) => {
             e.preventDefault();
             localStorage.removeItem('token')
-            let data = await fetch("http://localhost:8000/media/logout", {
+            let data = await fetch("/media/logout", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
