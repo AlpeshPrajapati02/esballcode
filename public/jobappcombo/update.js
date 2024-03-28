@@ -1,9 +1,9 @@
 
 async function update(){   
-    let route = window.location.pathname.split("/");
-
-    if(route !== "/"){
-    
+    let route = window.location.pathname;
+console.log(route)
+    if(route !== "/jobapp"){
+        route = route.split("/");
         let data = await fetch(`http://localhost:8000/jobapp/user/edit/${route[route.length-1]}`,{
             method:"GET",
             headers:{
