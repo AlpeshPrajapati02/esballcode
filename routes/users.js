@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, getAllUser, getUserById, UpdateUser, deleteUser, login, getForm, updateForm, activationAccount, activationForm, user, generateToken, logout, forgotPassword, forgotPassLink, CreatePassword, updatePassword } = require('../controllers/login-registartion/userController');
+const { createUser, getAllUser, getUserById, UpdateUser, deleteUser, login, getForm, updateForm, activationAccount, activationForm, user, generateToken, logout, forgotPassword, forgotPassLink, CreatePassword, updatePassword, getCurrentUser } = require('../controllers/login-registartion/userController');
 const { auth } = require('../middlewares/authMiddleware');
 const router = express.Router();
 
@@ -19,6 +19,8 @@ router.route('/verify')
 router.route('/generate')
 .post(generateToken)
 
+router.route('/current-user')
+.get(auth,getCurrentUser)
 
 router.route('/login')
 .get((req,res)=>{

@@ -168,7 +168,7 @@ exports.login = async (req, res) => {
 
       return res
         .cookie("token", token, {
-          maxAge: 4 * 24 * 60 * 60 * 1000,
+          maxAge:  20 * 1000,
           httpOnly: true,
         })
         .json({
@@ -676,3 +676,18 @@ exports.updatePassword = async (req, res) => {
     });
   }
 };
+
+
+exports.getCurrentUser = async(req,res)=>{
+  try {
+    return res.json({
+      success:true,
+      user:req.user
+    })
+  } catch (error) {
+    return res.json({
+      success:false,
+      error:error.message
+    })
+  }
+}

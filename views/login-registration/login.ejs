@@ -47,12 +47,8 @@
 
     <script src="/public/loginRegistration/script.js"></script>
     <script>
-        let submit = document.getElementById('submit');
-
-        if(localStorage.getItem('token')){
-            window.location = "/media"
-        }
-       
+        let submit = document.getElementById('submit'); 
+        
         submit.addEventListener('click', async (e) => {
             e.preventDefault();
             if (validate()) {
@@ -72,7 +68,6 @@
                 console.log(data);
 
                 if (data.success) {
-                    localStorage.setItem('token',data.user.token);
                     window.location = "/media"
                 }
             }

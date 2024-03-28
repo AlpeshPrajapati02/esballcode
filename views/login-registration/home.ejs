@@ -67,9 +67,7 @@
     <script>
         // collect data from above form
         let submit = document.getElementById("submit");
-        if(localStorage.getItem('token')){
-            window.location = "/media"
-        }
+        
         submit.addEventListener('click', async (e) => {
             e.preventDefault();
             if (validate()) {
