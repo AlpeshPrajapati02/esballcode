@@ -36,10 +36,11 @@
                     <p>OR</p>
                     <div class="right"></div>
                 </div>
-                <div class="link">
+                <div class="mvbutton">
                     <p>Create New Account? <a href="/media/register">register</a></p>
                 </div>
             </form>
+            <div class="link"></div>
         </div>
         </div>
     </div>
@@ -69,6 +70,10 @@
 
                 if (data.success) {
                     window.location = "/media"
+                }
+                else{
+                    document.querySelector('.link').innerHTML = `<p>${data.message}</p>`;
+                    document.querySelector('.link').style.color = "red";
                 }
             }
         });

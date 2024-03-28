@@ -44,7 +44,7 @@ exports.createUser = async (req, res) => {
     if (result.length > 0) {
       return res.status(400).json({
         success: false,
-        message: "user already exist",
+        message: "User already exist",
       });
     }
 
@@ -131,7 +131,7 @@ exports.login = async (req, res) => {
     if (result.length <= 0) {
       return res.status(400).json({
         success: false,
-        message: "user not registered",
+        message: "Incorrect Email or Password",
       });
     }
 
@@ -175,6 +175,12 @@ exports.login = async (req, res) => {
           success: true,
           user: newObj,
         });
+    }
+    else{
+      return res.json({
+        success:false,
+        message:"Incorrect Email or Password"
+      })
     }
   } catch (error) {
     return res.status(500).json({
