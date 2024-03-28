@@ -101,7 +101,7 @@
                     let p = document.createElement('p');
                     p.classList.add('active-link');
                     p.innerHTML = `<a href="/media/token/?token=${data.user.verification_token}&email=${data.user.email}" target="_blank">Click Here</a> to Activate Account!`;
-                    document.querySelector('.link').innerHTML = p;
+                    document.querySelector('.link').appendChild(p);
                 } else {
                     document.querySelector('.link').innerHTML = `<p>Error occur during Registration, Please register again !</p>`;
                 }
