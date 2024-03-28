@@ -48,15 +48,15 @@
         <!-- pagination -->
         <div class="page-value">
             <div class="pagination">
-               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/pagination/data/?page=1<%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"   %>">&lt;&lt;</a>
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/pagination/?page=1<%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"   %>">&lt;&lt;</a>
 
-               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/pagination/data/?page=<%= page-1 > 0 ? page - 1 : 1 %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&lt;</a>
+               <a class="<%= page<=1 ? 'disable btn':"btn" %>" href="/pagination/?page=<%= page-1 > 0 ? page - 1 : 1 %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&lt;</a>
 
                 <p class="pg-num"><span id="page" onchange=""><%= page %></span></p>
 
-               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/pagination/data/?page=<%= page+1 <= lastPage ? page+1 : lastPage%><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;</a>
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/pagination/?page=<%= page+1 <= lastPage ? page+1 : lastPage%><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;</a>
 
-               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/pagination/data/?page=<%= lastPage %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;&gt;</a>
+               <a class="<%= page>= lastPage ? 'disable btn':"btn" %>" href="/pagination/?page=<%= lastPage %><%= orderby !=='sid' ? '&orderby='+orderby :"" %>&order=<%= order ? order : "ASC"  %>">&gt;&gt;</a>
             </div>
         </div>
     </div>
