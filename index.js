@@ -42,7 +42,7 @@ const spaRoute = require("./routes/spa");
 const task27Route = require("./routes/task27");
 const updateDataRoute = require("./routes/updateData");
 const jstasksRouter = require("./routes/jstasks");
-
+const htmlRoute = require('./routes/html');
 app.get("/",(req,res)=>{
   res.send("<h1><a href='/media/login'> Login </a></h1>")
 })
@@ -55,6 +55,7 @@ app.use("/spa", spaRoute);
 app.use("/task27", task27Route);
 app.use("/updateData", updateDataRoute);
 app.use("/jstasks", jstasksRouter);
+app.use("/html",htmlRoute)
 
 app.listen(PORT, () => {
   console.log(`server is running on port: ${PORT}`);
