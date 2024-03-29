@@ -413,7 +413,9 @@ next.addEventListener('click',async(e)=>{
           d = await d.json();
           console.log(d)
           if(d.success){
-            form.reset();
+            if(window.location.pathname == '/jobapp'){
+                form.reset();
+            }
             document.querySelector('.msg').innerHTML = "Form Submitted Successfully"
           }else{
             document.querySelector('.msg').innerHTML = d.error;

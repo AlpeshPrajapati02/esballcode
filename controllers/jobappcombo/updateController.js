@@ -390,15 +390,16 @@ exports.updateUser = async (req, res) => {
       }
     }
 
+
     if(refname){
       for (let i = 0; i < refname.length; i++) {
         if ((refname[i] && (!refcontact[i] || !refrelation[i])) ||
-          (!company[i] && (refcontact[i] || refrelation[i]))) {
+          (!refname[i] && (refcontact[i] || refrelation[i]))) {
           return res.json({ message: "All fields are Required !" });
         }
       }
     }
-
+    console.log(req.body)
   
     await basicDetails(req, res, id);
     await educationDetails(req, res, id);

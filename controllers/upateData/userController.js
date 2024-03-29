@@ -313,7 +313,7 @@ exports.user = async (req, res) => {
 
   for(let i = 0; i<refname.length; i++){
     if((refname[i] && (!refcontact[i] || !refrelation[i])) ||
-    (!company[i] && (refcontact[i] || refrelation[i]))){
+    (!refname[i] && (refcontact[i] || refrelation[i]))){
       return res.render("updateData/home",{
         data:null,
         message:"All Fields are required !",

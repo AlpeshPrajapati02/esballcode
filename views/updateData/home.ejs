@@ -55,7 +55,7 @@
                         <% } %>><label for="female">Female</label></label>
 
                         <label for="dob">Date Of Birth: 
-                        <input type="text" name="dob" id="dob" placeholder="mm/dd/yyyy" class="dvalid" value="<%= data?.dob?.toLocaleDateString()%>"> </label>
+                        <input type="text" name="dob" id="dob" placeholder="mm/dd/yyyy" class="dvalid" value="<%= data?.dob%>"> </label>
 
                     </div>
 
@@ -234,10 +234,10 @@
                     <input type="text" name="cdesignation[]" value="<%= workDetails[0]?.designation %>"></label>
 
                     <label for="fromdate1">Form: 
-                    <input type="text" name="fromdate[]"  value="<%= workDetails[0]?.fromDate?.toLocaleDateString() %>"></label>
+                    <input type="text" name="fromdate[]"  value="<%= workDetails[0]?.fromDate %>"></label>
 
                     <label for="todate1">To:
-                    <input type="text"   name="todate[]"  value="<%= workDetails[0]?.toDate?.toLocaleDateString() %>"> </label>
+                    <input type="text"   name="todate[]"  value="<%= workDetails[0]?.toDate %>"> </label>
 
                     <input type="hidden" name="companyId[]" value="<%= workDetails[0]?.wid %>">
                 </div>
@@ -250,10 +250,10 @@
                         <input type="text" name="cdesignation[]"  value="<%= workDetails[i]?.designation %>"></label>
     
                         <label for="fromdate1">Form: 
-                        <input type="text" name="fromdate[]" value="<%= workDetails[i]?.fromDate?.toLocaleDateString() %>"></label>
+                        <input type="text" name="fromdate[]" value="<%= workDetails[i]?.fromDate %>"></label>
     
                         <label for="todate1">To:
-                        <input type="text"   name="todate[]" value="<%= workDetails[i]?.toDate?.toLocaleDateString() %>"> </label>
+                        <input type="text"   name="todate[]" value="<%= workDetails[i]?.toDate %>"> </label>
 
                         <input type="hidden" name="companyId[]" value="<%= workDetails[i]?.wid %>">
                     </div>

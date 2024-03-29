@@ -1,28 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .container {
+            padding: 60px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        tr.header td {
+            font-weight: bold;
+            color: green;
+            font-size: 15px;
+
+        }
+
+        tr td {
+            padding: 6px;
+        }
+
+        table tr td {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <table border="1">
-            <tr>
+            <tr class="header">
                 <td>userId</td>
                 <td>name</td>
                 <td>email</td>
                 <td>Edit</td>
             </tr>
-            <% data.forEach((obj) => { %>
+            <% data.forEach((obj)=> { %>
                 <tr>
-                    <td><%= obj.canid %></td>
-                    <td><%= obj.fname +" "+obj.lname %></td>
+                    <td>
+                        <%= obj.canid %>
+                    </td>
+                    <td>
+                        <%= obj.fname +" "+obj.lname %></td>
                     <td><%= obj.email %></td>
-                    <td><a href="/updateData/user/<%= obj.canid %>">Edit</a></td>
+                    <td><a href=" /updateData/user/<%=obj.canid %>">Edit</a>
+                    </td>
                 </tr>
-            <% }) %>
+                <% }) %>
         </table>
     </div>
 </body>
+
 </html>
