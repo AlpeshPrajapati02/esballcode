@@ -6,7 +6,7 @@ router.route('/hirex')
    return res.render('practical3/index')
 })
 
-router.route('/ownhoster')
+router.route('/awanhoster')
 .get((req,res)=>{
    return res.render('task2/index')
 })

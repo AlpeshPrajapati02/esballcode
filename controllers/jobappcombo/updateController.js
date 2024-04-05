@@ -403,14 +403,18 @@ exports.updateUser = async (req, res) => {
   
     await basicDetails(req, res, id);
     await educationDetails(req, res, id);
+
     if(company){
       await experienceDetails(req, res, id);
     }
+
     await languageDetails(req, res, id);
     await techDetails(req, res, id);
+
     if(refname){
       await refDetails(req, res, id);
     }
+      ``
     await preferenceDetails(req, res, id);
 
     return res.json({success:true})
