@@ -41,7 +41,7 @@ function putData(data){
    let relationshipOption = document.querySelectorAll('#relationship option');
     relationshipOption.forEach((option)=>{
         console.log(option.value,"  ",data.basicData.relationship)
-        if(option.value === data.basicData.relationship){
+        if(option.value.toLowerCase() === data.basicData.relationship){
             option.setAttribute('selected','true')
         }
     })
@@ -256,7 +256,7 @@ let option = document.querySelectorAll('#department option');
 
 
 option.forEach((op)=>{
-    if(data.preference.department == op.value){
+    if(data.preference.department == op.value.toLowerCase()){
         op.setAttribute('selected','true')
     }
 })

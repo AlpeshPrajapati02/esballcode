@@ -188,7 +188,8 @@ function validate()
         }
 
         companyfields.forEach((item) => {
-          if (item.value == "") {
+          if (item.value == "" && item.type !== "hidden") {
+            console.log(item.type)
             let p = document.createElement("p");
             item.insertAdjacentElement("afterend", p);
             p.innerHTML = "*required";
@@ -336,7 +337,7 @@ function validate()
 
   
         reffields.forEach((item) => {
-          if (item.value == "") {
+          if (item.value == "" && item.type !== "hidden") {
             let p = document.createElement("p");
             item.parentNode.append(p);
             p.innerHTML = "*required";
