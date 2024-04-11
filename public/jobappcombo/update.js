@@ -40,6 +40,7 @@ function putData(data){
 
    let relationshipOption = document.querySelectorAll('#relationship option');
     relationshipOption.forEach((option)=>{
+        console.log(option.value,"  ",data.basicData.relationship)
         if(option.value === data.basicData.relationship){
             option.setAttribute('selected','true')
         }
@@ -65,7 +66,7 @@ function putData(data){
 
     let bachelor = document.querySelectorAll('#bachelor-coursename option');
     bachelor.forEach((option)=>{
-        if(option.value === data.educationDetails[2].board_course){
+        if(option.value === data.educationDetails[2]?.board_course){
             option.setAttribute('selected','true')
         }
     })

@@ -400,7 +400,7 @@ exports.user = async (req, res) => {
         message: error.message,
       });
     }
-    return res.redirect("updateData/users");
+    return res.redirect("/updateData/users");
   } catch (error) {
     return res.status(500).render("updateData/home", {
       message: error.message,

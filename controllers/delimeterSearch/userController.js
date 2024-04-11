@@ -214,7 +214,7 @@ exports.getUser = async (req, res) => {
     }
     if(age.length){
       if(age.length == 1){
-        sql += `fname like '%${age[0]}%' and `;
+        sql += `age like '%${age[0]}%' and `;
       }
       else{
         sql += "(";

@@ -393,8 +393,8 @@ next.addEventListener('click',async(e)=>{
           id = id[id.length -1];
 
           let url = "http://localhost:8000/jobapp";
-          console.log(window.location.pathname)
-          if(window.location.pathname !== "/jobapp/"){
+          // console.log(window.location.pathname)
+          if(window.location.pathname !== "/jobapp"){
             url += `/update/${id}`;
           }
           else {

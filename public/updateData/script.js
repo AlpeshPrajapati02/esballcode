@@ -334,6 +334,7 @@ function validate()
           });
         }
 
+  
         reffields.forEach((item) => {
           if (item.value == "") {
             let p = document.createElement("p");
